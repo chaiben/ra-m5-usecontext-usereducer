@@ -6,6 +6,7 @@ import { Button, Icon } from '../../atoms'
 import { Actions } from './store/reducer'
 import { SelectGroup } from '../../molecules'
 import { colors, FlexBox } from '../../../styles'
+import { handleDownload } from '../../../helpers'
 
 const TableFooterStyled = styled.tbody`
   ${SelectGroup} {
@@ -20,7 +21,7 @@ const TableFooterStyled = styled.tbody`
 
 function TableFooter() {
   const { state, dispatch } = useContext(TableContext)
-  const { columns, pages, currentPage, itemsPerPage } = state
+  const { columns, pages, currentPage, itemsPerPage, data } = state
 
   const isFirstPage = currentPage <= 1
   const isLastPage = currentPage >= pages.length
@@ -66,6 +67,16 @@ function TableFooter() {
                   })
                 }
               />
+              <Button
+                shadow="0"
+                bgcolor="white"
+                color={colors.blue}
+                onClick={() => {
+                  handleDownload(columns, data)
+                }}
+              >
+                <Icon icon="download" />
+              </Button>
             </FlexBox>
           </FlexBox>
         </TableCell>
