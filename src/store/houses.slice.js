@@ -5,7 +5,7 @@ const getUrl = (page) => `${urls.houses}?_page=${page}&_limit=9`
 
 export const getHouses = createAsyncThunk(
   'houses/getHouses',
-   async (currentPage) => {
+  async (currentPage) => {
     const res = await fetch(getUrl(currentPage))
     const data = await res.json()
     return data

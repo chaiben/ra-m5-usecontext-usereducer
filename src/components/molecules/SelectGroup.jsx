@@ -21,20 +21,14 @@ function SelectGroup({
       <Label htmlFor={id} hideLabel={hideLabel}>
         {label}
       </Label>
-      <Select
-        id={id}
-        name={id}
-        onChange={onChange}
-        {...rest}
-      >
-        {defaultText && <SelectOption value="" disabled>
-          {defaultText}
-        </SelectOption>}
+      <Select id={id} name={id} onChange={onChange} {...rest}>
+        {defaultText && (
+          <SelectOption value="" disabled>
+            {defaultText}
+          </SelectOption>
+        )}
         {options.map((option) => (
-          <SelectOption 
-            value={option.value} 
-            key={option.value}
-          >
+          <SelectOption value={option.value} key={option.value}>
             {option.text}
           </SelectOption>
         ))}

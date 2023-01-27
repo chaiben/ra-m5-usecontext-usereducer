@@ -5,11 +5,17 @@ import { TableCell } from './styles'
 function TableBody() {
   const { state } = useContext(TableContext)
   const { pages, currentPage, columns } = state
-  if (pages.length === 0 )
-    return (<tbody><tr><TableCell colSpan={columns.length}>No data found</TableCell></tr></tbody>)
+  if (pages.length === 0)
+    return (
+      <tbody>
+        <tr>
+          <TableCell colSpan={columns.length}>No data found</TableCell>
+        </tr>
+      </tbody>
+    )
   return (
     <tbody>
-      {pages[currentPage-1].map((d) => (
+      {pages[currentPage - 1].map((d) => (
         <tr key={d.id}>
           {columns
             .filter((col) => !col.isHidden)

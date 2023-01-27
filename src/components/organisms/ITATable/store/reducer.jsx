@@ -4,7 +4,7 @@ import { chunk } from 'lodash'
 export const initialState = {
   data: [],
   columns: [],
-  pages:[],
+  pages: [],
   currentPage: 1,
   itemsPerPage: 10,
 }
@@ -34,17 +34,23 @@ export const tableReducer = (state = initialState, action) => {
 
     case Actions.NEXT_PAGE:
       return createNextState(state, (draft) => {
-        draft.currentPage = (state.currentPage < state.pages.length) ? state.currentPage + 1 : state.currentPage
+        draft.currentPage =
+          state.currentPage < state.pages.length
+            ? state.currentPage + 1
+            : state.currentPage
       })
 
     case Actions.PREV_PAGE:
       return createNextState(state, (draft) => {
-        draft.currentPage = (state.currentPage > 1) ? state.currentPage - 1 : state.currentPage
+        draft.currentPage =
+          state.currentPage > 1 ? state.currentPage - 1 : state.currentPage
       })
 
     case Actions.SET_ITEMS_PER_PAGE:
       return createNextState(state, (draft) => {
-        draft.itemsPerPage = (action.payload) ? action.payload : initialState.itemsPerPage
+        draft.itemsPerPage = action.payload
+          ? action.payload
+          : initialState.itemsPerPage
         draft.pages = chunk(state.data, action.payload)
         draft.currentPage = 1
       })

@@ -39,7 +39,7 @@ function SubHeader({ ...props }) {
             id="type"
             label="Tipo"
             defaultText="Piso, chalet o garaje..."
-            defaultValue=''
+            defaultValue=""
             hideLabel
             options={types.map((type) => ({ value: type, text: type }))}
             onChange={(e) => dispatch(setSelectedType(e.target.value))}
@@ -49,7 +49,7 @@ function SubHeader({ ...props }) {
             id="ciudad"
             label="Ciudad"
             defaultText="Madrid, Barcelona o Zaragoza..."
-            defaultValue=''
+            defaultValue=""
             hideLabel
             options={cities.map((city) => ({ value: city, text: city }))}
             onChange={(e) => dispatch(setSelectedCity(e.target.value))}

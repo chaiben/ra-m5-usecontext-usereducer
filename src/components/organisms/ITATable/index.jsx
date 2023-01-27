@@ -19,7 +19,7 @@ function Table({ columns, data, showHeader = true }) {
     <TableStyled>
       {showHeader && <TableHeader />}
       <TableBody />
-      <TableFooter/>
+      <TableFooter />
     </TableStyled>
   )
 }
@@ -38,11 +38,12 @@ Table.propTypes = {
       id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       // eslint-disable-next-line react/forbid-prop-types
-      cell: PropTypes.any
-    })),
+      cell: PropTypes.any,
+    }),
+  ),
   // eslint-disable-next-line react/forbid-prop-types
   data: PropTypes.array.isRequired,
-  showHeader: PropTypes.bool
+  showHeader: PropTypes.bool,
 }
 
 export default ITATable

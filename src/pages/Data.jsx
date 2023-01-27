@@ -31,7 +31,7 @@ function Data() {
   const { reqStatus, users } = useSelector((state) => state.users)
   const { isError, isSuccess, isLoading } = reqStatus
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     dispatch(getUsers())
   }, [dispatch])

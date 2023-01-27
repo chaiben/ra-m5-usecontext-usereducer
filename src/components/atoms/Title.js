@@ -26,7 +26,7 @@ const Title = styled.h1
   .attrs(({ order }) => {
     if (order < 1 || order > 6) {
       throw new Error(
-        'The order property should be between 1 and 6 -> [1, ...6].'
+        'The order property should be between 1 and 6 -> [1, ...6].',
       )
     }
     return {

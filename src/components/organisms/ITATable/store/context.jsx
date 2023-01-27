@@ -11,7 +11,7 @@ function TableProvider({ children }) {
 }
 
 TableProvider.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
 export { TableContext }
