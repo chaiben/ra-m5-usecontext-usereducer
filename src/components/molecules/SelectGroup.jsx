@@ -2,14 +2,16 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Label, Select, SelectOption } from '../atoms'
 
-const SelectGroupStyled = styled.div``
+const SelectGroupStyled = styled.div`
+  display: flex;
+  gap: 1rem;
+`
 
 function SelectGroup({
   label,
   id,
   onChange,
   options = [],
-  defaultValue = '',
   defaultText = '',
   hideLabel = false,
   ...rest
@@ -24,13 +26,15 @@ function SelectGroup({
         name={id}
         onChange={onChange}
         {...rest}
-        defaultValue={defaultValue}
       >
-        <SelectOption value="" disabled>
+        {defaultText && <SelectOption value="" disabled>
           {defaultText}
-        </SelectOption>
+        </SelectOption>}
         {options.map((option) => (
-          <SelectOption value={option.value} key={option.value}>
+          <SelectOption 
+            value={option.value} 
+            key={option.value}
+          >
             {option.text}
           </SelectOption>
         ))}

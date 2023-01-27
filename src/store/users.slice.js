@@ -9,8 +9,7 @@ export const getUsers = createAsyncThunk('users/getUsers', async () => {
     const data = await res.json()
     return data
   } catch (err) {
-    console.log('Error to load userList: ', err)
-    return rejectWithValue('Error to load userList')
+    return Error('Error to load userList')
   }
 })
 

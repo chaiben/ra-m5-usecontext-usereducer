@@ -5,12 +5,12 @@ import { colors, dimensions } from '../../styles'
 const { spacing, borderRadius } = dimensions
 
 const ButtonStyled = styled.button`
-  background-color: ${colors.purple};
-  color: white;
+  background-color: ${(props) => props.bgcolor || colors.purple};
+  color: ${(props) => props.color || 'white'};
   border-radius: ${borderRadius.base};
   border: 0;
   padding: ${spacing.xs} ${spacing.base};
-  box-shadow: ${colors.shadow.base};
+  box-shadow: ${(props) => props.shadow || colors.shadow.base};
 
   &:hover {
     cursor: pointer;

@@ -4,6 +4,7 @@ export default {
   purple: '#8077A3',
   blue: '#0073E6',
   red: '#823434',
+  gray: '#cccccc',
   font: {
     base: '#444',
     headings: '#121212',

@@ -6,6 +6,7 @@ const FlexBox = styled.div`
   justify-content: ${({ justify }) => justify || 'flex-start'};
   flex-direction: ${({ direction }) => direction || 'column'};
   flex-grow: ${({ grow }) => grow || 0};
+  gap: ${({ gap }) => gap || 0};
   flex-wrap: ${({ flex }) => flex || 'no-wrap'};
   width: ${({ w }) => w || '100%'};
 `

@@ -6,7 +6,7 @@ function TableBody() {
   const { state } = useContext(TableContext)
   const { pages, currentPage, columns } = state
   if (pages.length === 0 )
-    return (<tbody><tr><TableCell>No data found</TableCell></tr></tbody>)
+    return (<tbody><tr><TableCell colSpan={columns.length}>No data found</TableCell></tr></tbody>)
   return (
     <tbody>
       {pages[currentPage-1].map((d) => (
