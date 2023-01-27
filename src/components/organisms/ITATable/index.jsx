@@ -3,6 +3,7 @@ import TableProvider, { TableContext } from './store/context'
 import { Actions } from './store/reducer'
 import { TableStyled } from './styles'
 import TableBody from './TableBody'
+import TableFooter from './TableFooter'
 import TableHeader from './TableHeader'
 
 function Table({ columns, data, showHeader = true }) {
@@ -17,6 +18,7 @@ function Table({ columns, data, showHeader = true }) {
     <TableStyled>
       {showHeader && <TableHeader />}
       <TableBody />
+      <TableFooter colSpan={columns.length}>Hola</TableFooter>
     </TableStyled>
   )
 }

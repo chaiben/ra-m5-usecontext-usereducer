@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Body } from '../components/layout'
 import { ITATable } from '../components/organisms'
+import { getUsers } from '../store/users.slice'
 import { Container } from '../styles'
 
 const columns = [
@@ -25,28 +27,20 @@ const columns = [
   },
 ]
 
-const data = [
-  {
-    id: 1,
-    name: 'Juan',
-    surnames: 'Perez',
-    age: 25,
-    occupation: 'Developer',
-  },
-  {
-    id: 2,
-    name: 'Pedro',
-    surnames: 'Gomez',
-    age: 75,
-    occupation: 'Developer',
-  },
-]
-
 function Data() {
+  const { reqStatus, users } = useSelector((state) => state.users)
+  const { isError, isSuccess, isLoading } = reqStatus
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(getUsers())
+  }, [dispatch])
   return (
     <Body>
       <Container style={{ marginTop: '2rem' }}>
-        <ITATable columns={columns} data={data} />
+        {isError && <div>Error...</div>}
+        {isLoading && <div>Loading...</div>}
+        {isSuccess && <ITATable columns={columns} data={users.data} />}
       </Container>
     </Body>
   )
