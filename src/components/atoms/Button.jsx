@@ -15,6 +15,10 @@ const ButtonStyled = styled.button`
   &:hover {
     cursor: pointer;
   }
+  &:disabled,
+  &[disabled] {
+    cursor: initial;
+  }
 `
 
 function Button({ children, type = 'button', ...rest }) {

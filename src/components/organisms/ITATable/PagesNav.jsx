@@ -16,6 +16,7 @@ function PagesNav() {
       <Button
         shadow="0"
         bgcolor="white"
+        disabled={!isFirstPage ? '' : 'disabled'}
         color={!isFirstPage ? colors.blue : colors.gray}
         onClick={() => dispatch({ type: Actions.PREV_PAGE })}
       >
@@ -27,6 +28,7 @@ function PagesNav() {
       <Button
         shadow="0"
         bgcolor="white"
+        disabled={!isLastPage ? '' : 'disabled'}
         color={!isLastPage ? colors.blue : colors.gray}
         onClick={() => dispatch({ type: Actions.NEXT_PAGE })}
       >
