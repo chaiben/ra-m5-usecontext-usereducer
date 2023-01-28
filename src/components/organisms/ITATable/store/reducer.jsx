@@ -7,6 +7,7 @@ export const initialState = {
   pages: [],
   currentPage: 1,
   itemsPerPage: 10,
+  orderBy: null,
 }
 
 export const Actions = {
@@ -15,6 +16,7 @@ export const Actions = {
   NEXT_PAGE: 'NEXT_PAGE',
   PREV_PAGE: 'PREV_PAGE',
   SET_ITEMS_PER_PAGE: 'SET_ITEMS_PER_PAGE',
+  SET_ORDER_BY: 'SET_ORDER_BY',
 }
 
 // eslint-disable-next-line default-param-last
@@ -53,6 +55,15 @@ export const tableReducer = (state = initialState, action) => {
           : initialState.itemsPerPage
         draft.pages = chunk(state.data, action.payload)
         draft.currentPage = 1
+      })
+
+    case Actions.SET_ORDER_BY:
+      return createNextState(state, (draft) => {
+        draft.orderBy = action.payload
+        draft.data.sort((a, b) =>
+          a[action.payload] > b[action.payload] ? 1 : -1,
+        )
+        draft.pages = chunk(draft.data, state.itemsPerPage)
       })
 
     default:
