@@ -1,8 +1,22 @@
 import React, { useContext } from 'react'
-import { Button, Icon } from '../../atoms'
+import styled from 'styled-components'
 import { TableContext } from './store/context'
 import { Actions } from './store/reducer'
-import { colors } from '../../../styles'
+
+const ButtonStyled = styled.button`
+  background-color: white;
+  border: 0;
+  margin: 0 0.5rem;
+  color: #0073e6;
+  cursor: pointer;
+  &:hover {
+    color: #0073e699;
+  }
+  &:disabled {
+    color: #ccc;
+    cursor: initial;
+  }
+`
 
 function PagesNav() {
   const { state, dispatch } = useContext(TableContext)
@@ -13,27 +27,23 @@ function PagesNav() {
 
   return (
     <>
-      <Button
-        shadow="0"
-        bgcolor="white"
+      <ButtonStyled
+        type="button"
         disabled={!isFirstPage ? '' : 'disabled'}
-        color={!isFirstPage ? colors.blue : colors.gray}
         onClick={() => dispatch({ type: Actions.PREV_PAGE })}
       >
-        <Icon icon="arrow_back_ios" />
-      </Button>
+        &lt;
+      </ButtonStyled>
       <strong>
         Pagina {currentPage} de {pages.length === 0 ? 1 : pages.length}
       </strong>
-      <Button
-        shadow="0"
-        bgcolor="white"
+      <ButtonStyled
+        type="button"
         disabled={!isLastPage ? '' : 'disabled'}
-        color={!isLastPage ? colors.blue : colors.gray}
         onClick={() => dispatch({ type: Actions.NEXT_PAGE })}
       >
-        <Icon icon="arrow_forward_ios" />
-      </Button>
+        &gt;
+      </ButtonStyled>
     </>
   )
 }

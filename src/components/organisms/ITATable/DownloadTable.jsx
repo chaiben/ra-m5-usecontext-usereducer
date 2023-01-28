@@ -1,24 +1,31 @@
 import React, { useContext } from 'react'
-import { Button, Icon } from '../../atoms'
+import styled from 'styled-components'
 import { TableContext } from './store/context'
-import { colors } from '../../../styles'
-import { handleDownload } from '../../../helpers'
+import { handleDownload } from './helpers'
+
+const ButtonStyled = styled.button`
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  color: #0073e6;
+  &:hover {
+    color: #0073e699;
+  }
+`
 
 function DownloadTable() {
   const { state } = useContext(TableContext)
   const { columns, data } = state
 
   return (
-    <Button
-      shadow="0"
-      bgcolor="white"
-      color={colors.blue}
+    <ButtonStyled
+      type="button"
       onClick={() => {
         handleDownload(columns, data)
       }}
     >
-      <Icon icon="download" />
-    </Button>
+      ⤓
+    </ButtonStyled>
   )
 }
 
