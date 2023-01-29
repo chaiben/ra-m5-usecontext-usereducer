@@ -1,22 +1,7 @@
 import React, { useContext } from 'react'
-import styled from 'styled-components'
 import { TableContext } from './store/context'
 import { Actions } from './store/reducer'
-
-const ButtonStyled = styled.button`
-  background-color: white;
-  border: 0;
-  margin: 0 0.5rem;
-  color: #0073e6;
-  cursor: pointer;
-  &:hover {
-    color: #0073e699;
-  }
-  &:disabled {
-    color: #ccc;
-    cursor: initial;
-  }
-`
+import { ButtonStyled } from './styles'
 
 function PagesNav() {
   const { state, dispatch } = useContext(TableContext)

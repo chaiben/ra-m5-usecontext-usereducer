@@ -7,7 +7,7 @@ import FlexBox from './Flexbox'
 const SelectGroupStyled = styled.select`
   padding: 0rem 0.5rem;
   border-radius: 4px;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 `
 
 function ItemsPerPage() {
