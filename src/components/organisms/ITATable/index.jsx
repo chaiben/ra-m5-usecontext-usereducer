@@ -39,6 +39,7 @@ Table.propTypes = {
       label: PropTypes.string.isRequired,
       // eslint-disable-next-line react/forbid-prop-types
       cell: PropTypes.any,
+      sort: PropTypes.bool,
     }),
   ),
   // eslint-disable-next-line react/forbid-prop-types

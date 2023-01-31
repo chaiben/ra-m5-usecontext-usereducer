@@ -21,18 +21,24 @@ function TableHeader() {
       <tr>
         {columns
           .filter((col) => !col.isHidden)
-          .map((col) => (
-            <TableCellStyled
-              as="th"
-              key={col.id}
-              onClick={() =>
-                dispatch({ type: Actions.SET_ORDER_BY, payload: col.id })
-              }
-              className={col.id === orderBy ? 'selected' : ''}
-            >
-              {col.label}
-            </TableCellStyled>
-          ))}
+          .map((col) =>
+            col.sort ? (
+              <TableCellStyled
+                as="th"
+                key={col.id}
+                onClick={() =>
+                  dispatch({ type: Actions.SET_ORDER_BY, payload: col.id })
+                }
+                className={col.id === orderBy ? 'selected' : ''}
+              >
+                {col.label}
+              </TableCellStyled>
+            ) : (
+              <TableCell as="th" key={col.id}>
+                {col.label}
+              </TableCell>
+            ),
+          )}
       </tr>
     </thead>
   )

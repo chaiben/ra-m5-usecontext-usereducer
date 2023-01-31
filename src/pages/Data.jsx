@@ -10,6 +10,7 @@ const columns = [
   {
     id: 'title',
     label: 'Nombre',
+    sort: true,
   },
   {
     id: 'price',
@@ -19,6 +20,7 @@ const columns = [
         {row.price}
       </span>
     ),
+    sort: true,
   },
   {
     id: 'city',
