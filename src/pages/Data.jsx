@@ -2,45 +2,57 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Body } from '../components/layout'
 import { ITATable } from '../components/organisms'
-import { getUsers } from '../store/users.slice'
+import { getHouses } from '../store/houses.slice'
 import { Container } from '../styles'
+import { filterBy } from '../helpers'
 
 const columns = [
   {
-    id: 'name',
-    label: 'Name',
+    id: 'title',
+    label: 'Nombre',
   },
   {
-    id: 'surnames',
-    label: 'Apellidos',
-  },
-  {
-    id: 'age',
-    label: 'Edad',
+    id: 'price',
+    label: 'Precio',
     cell: (row) => (
-      <span style={{ color: row.age > 50 ? 'green' : 'red' }}>{row.age}</span>
+      <span style={{ color: row.price < 400000 ? 'green' : 'red' }}>
+        {row.price}
+      </span>
     ),
   },
   {
-    id: 'occupation',
-    label: 'Ocupacion',
+    id: 'city',
+    label: 'Ciudad',
+  },
+  {
+    id: 'district',
+    label: 'Distrito',
+  },
+  {
+    id: 'type',
+    label: 'Tipo',
   },
 ]
 
 function Data() {
-  const { reqStatus, users } = useSelector((state) => state.users)
+  const { reqStatus, houses } = useSelector((state) => state.houses)
   const { isError, isSuccess, isLoading } = reqStatus
+  const { byId, allIds, selectedCity, selectedType } = houses
   const dispatch = useDispatch()
 
+  const data = allIds
+    .filter((id) => filterBy(byId[id], selectedCity, selectedType))
+    .map((id) => byId[id])
+
   useEffect(() => {
-    dispatch(getUsers())
+    dispatch(getHouses())
   }, [dispatch])
   return (
     <Body>
       <Container style={{ marginTop: '2rem' }}>
         {isError && <div>Error...</div>}
         {isLoading && <div>Loading...</div>}
-        {isSuccess && <ITATable columns={columns} data={users.data} />}
+        {isSuccess && <ITATable columns={columns} data={data} />}
       </Container>
     </Body>
   )
