@@ -22,11 +22,7 @@ function SelectGroup({
         {label}
       </Label>
       <Select id={id} name={id} onChange={onChange} {...rest}>
-        {defaultText && (
-          <SelectOption value="" disabled>
-            {defaultText}
-          </SelectOption>
-        )}
+        {defaultText && <SelectOption value="">{defaultText}</SelectOption>}
         {options.map((option) => (
           <SelectOption value={option.value} key={option.value}>
             {option.text}

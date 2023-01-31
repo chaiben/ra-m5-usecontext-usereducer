@@ -29,7 +29,9 @@ const FormStyled = styled(FlexBox).attrs({ as: 'form' })`
 `
 
 function SubHeader({ ...props }) {
-  const { types, cities } = useSelector((state) => state.houses.houses)
+  const { types, cities, selectedCity, selectedType } = useSelector(
+    (state) => state.houses.houses,
+  )
   const dispatch = useDispatch()
   return (
     <SubHeaderStyled {...props}>
@@ -39,7 +41,7 @@ function SubHeader({ ...props }) {
             id="type"
             label="Tipo"
             defaultText="Piso, chalet o garaje..."
-            defaultValue=""
+            value={selectedType ?? ''}
             hideLabel
             options={types.map((type) => ({ value: type, text: type }))}
             onChange={(e) => dispatch(setSelectedType(e.target.value))}
@@ -49,7 +51,7 @@ function SubHeader({ ...props }) {
             id="ciudad"
             label="Ciudad"
             defaultText="Madrid, Barcelona o Zaragoza..."
-            defaultValue=""
+            value={selectedCity ?? ''}
             hideLabel
             options={cities.map((city) => ({ value: city, text: city }))}
             onChange={(e) => dispatch(setSelectedCity(e.target.value))}
