@@ -45,7 +45,7 @@ function Data() {
     .map((id) => byId[id])
 
   useEffect(() => {
-    dispatch(getHouses())
+    dispatch(getHouses(-1))
   }, [dispatch])
   return (
     <Body>
