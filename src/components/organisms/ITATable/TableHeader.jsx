@@ -9,8 +9,6 @@ const TableCellStyled = styled(TableCell)`
   cursor: pointer;
   &.selected {
     background-color: lightblue;
-    text-decoration: none;
-    cursor: initial;
   }
 `
 function TableHeader() {

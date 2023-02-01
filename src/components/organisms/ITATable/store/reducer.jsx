@@ -8,6 +8,7 @@ export const initialState = {
   currentPage: 1,
   itemsPerPage: 10,
   orderBy: null,
+  orderAsc: true,
 }
 
 export const Actions = {
@@ -59,10 +60,15 @@ export const tableReducer = (state = initialState, action) => {
 
     case Actions.SET_ORDER_BY:
       return createNextState(state, (draft) => {
+        draft.orderAsc =
+          state.orderBy !== action.payload ? true : !state.orderAsc
         draft.orderBy = action.payload
-        draft.data.sort((a, b) =>
-          a[action.payload] > b[action.payload] ? 1 : -1,
-        )
+        console.log(draft.orderAsc)
+        draft.data.sort((a, b) => {
+          if (draft.orderAsc)
+            return a[action.payload] > b[action.payload] ? 1 : -1
+          return a[action.payload] < b[action.payload] ? 1 : -1
+        })
         draft.pages = chunk(draft.data, state.itemsPerPage)
       })
 
