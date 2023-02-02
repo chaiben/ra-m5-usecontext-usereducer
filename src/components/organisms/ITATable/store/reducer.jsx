@@ -25,8 +25,12 @@ export const tableReducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.SET_DATA:
       return createNextState(state, (draft) => {
-        draft.data = action.payload
-        draft.pages = chunk(action.payload, state.itemsPerPage)
+        draft.data = [...action.payload].sort((a, b) => {
+          if (draft.orderAsc)
+            return a[draft.orderBy] > b[draft.orderBy] ? 1 : -1
+          return a[draft.orderBy] < b[draft.orderBy] ? 1 : -1
+        })
+        draft.pages = chunk(draft.data, state.itemsPerPage)
         draft.currentPage = 1
       })
 
@@ -63,7 +67,6 @@ export const tableReducer = (state = initialState, action) => {
         draft.orderAsc =
           state.orderBy !== action.payload ? true : !state.orderAsc
         draft.orderBy = action.payload
-        console.log(draft.orderAsc)
         draft.data.sort((a, b) => {
           if (draft.orderAsc)
             return a[action.payload] > b[action.payload] ? 1 : -1
